@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CryptoShare — Trust Capsule</title>
+  <meta name="description" content="A hybrid cryptographic secure communication and cryptography learning framework.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       APP SHELL
+  ============================================================= -->
+  <div class="app-shell">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-mark" aria-hidden="true">⛨</span>
+        <div class="brand-text">
+          <span class="brand-name">CryptoShare</span>
+          <span class="brand-subtitle">Trust Capsule</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Primary">
+        <div class="nav-group">
+          <span class="nav-group-label">Overview</span>
+          <button class="nav-link is-active" data-view="dashboard" type="button">
+            <span class="nav-icon" aria-hidden="true">▦</span> Dashboard
+          </button>
+        </div>
+
+        <div class="nav-group">
+          <span class="nav-group-label">Layer 1 — Classical Lab</span>
+          <button class="nav-link" data-view="classical-lab" type="button">
+            <span class="nav-icon" aria-hidden="true">◧</span> Classical Overview
+          </button>
+          <button class="nav-link" data-view="playfair" type="button">
+            <span class="nav-icon" aria-hidden="true">▤</span> Playfair Cipher
+          </button>
+          <button class="nav-link" data-view="hill" type="button">
+            <span class="nav-icon" aria-hidden="true">▥</span> Hill Cipher
+          </button>
+        </div>
+
+        <div class="nav-group">
+          <span class="nav-group-label">Layer 2 — Trust Capsule</span>
+          <button class="nav-link" data-view="capsule-create" type="button">
+            <span class="nav-icon" aria-hidden="true">⛁</span> Capsule Creator
+          </button>
+          <button class="nav-link" data-view="capsule-verify" type="button">
+            <span class="nav-icon" aria-hidden="true">⛃</span> Capsule Verifier
+          </button>
+        </div>
+
+        <div class="nav-group">
+          <span class="nav-group-label">Reference</span>
+          <button class="nav-link" data-view="security-analysis" type="button">
+            <span class="nav-icon" aria-hidden="true">≡</span> Security Analysis
+          </button>
+          <button class="nav-link" data-view="crypto-journey" type="button">
+            <span class="nav-icon" aria-hidden="true">⇢</span> Cryptographic Journey
+          </button>
+          <button class="nav-link" data-view="about" type="button">
+            <span class="nav-icon" aria-hidden="true">ℹ</span> About / Methodology
+          </button>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span class="lab-status" id="labStatus">
+          <span class="status-dot status-dot--idle" aria-hidden="true"></span>
+          Lab session idle
+        </span>
+      </div>
+    </aside>
+
+    <!-- MOBILE TOP BAR -->
+    <header class="topbar">
+      <button class="topbar-menu-btn" id="menuToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+      </button>
+      <span class="topbar-title" id="topbarTitle">Dashboard</span>
+      <span class="topbar-badge" id="layerBadge" data-layer="none">—</span>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="mainContent">
+
+      <!-- ============================================================
+           VIEW: DASHBOARD
+      ============================================================= -->
+      <section class="view is-active" id="view-dashboard" data-view-section="dashboard">
+        <header class="view-header">
+          <span class="eyebrow">Overview</span>
+          <h1>CryptoShare — Trust Capsule</h1>
+          <p class="view-lede">A hybrid cryptographic secure communication and cryptography learning framework. Two distinct layers, kept deliberately separate: a classical cryptography lab for learning, and a modern Trust Capsule workflow for secure communication.</p>
+        </header>
+
+        <div class="layer-split">
+          <article class="layer-card layer-card--classical">
+            <span class="layer-card-tag">Layer 1</span>
+            <h2>Classical Cryptography Lab</h2>
+            <p>Playfair and Hill ciphers, fully worked with step-by-step matrix and digraph visualization. Educational only — not suitable for real confidentiality.</p>
+            <div class="layer-card-actions">
+              <button class="btn btn--secondary" data-view="playfair" type="button">Open Playfair</button>
+              <button class="btn btn--secondary" data-view="hill" type="button">Open Hill Cipher</button>
+            </div>
+          </article>
+
+          <article class="layer-card layer-card--modern">
+            <span class="layer-card-tag">Layer 2</span>
+            <h2>Trust Capsule</h2>
+            <p>AES-GCM confidentiality, ECDH session establishment, SHA-256 integrity, and ECDSA signatures — assembled into a single verifiable capsule using the Web Crypto API.</p>
+            <div class="layer-card-actions">
+              <button class="btn btn--primary" data-view="capsule-create" type="button">Create Capsule</button>
+              <button class="btn btn--secondary" data-view="capsule-verify" type="button">Verify Capsule</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="info-card">
+            <h3>Cryptographic Journey</h3>
+            <p>Trace a message from input to output across every stage: encryption, key establishment, integrity, authentication, and verification.</p>
+            <button class="btn btn--text" data-view="crypto-journey" type="button">View journey →</button>
+          </article>
+          <article class="info-card">
+            <h3>Security Analysis</h3>
+            <p>A side-by-side comparison of Playfair, Hill, AES-GCM, ECC/ECDH, SHA-256, and ECDSA — purpose, strength, and modern suitability.</p>
+            <button class="btn btn--text" data-view="security-analysis" type="button">Compare algorithms →</button>
+          </article>
+          <article class="info-card">
+            <h3>Methodology &amp; Scope</h3>
+            <p>This project does not invent new cryptography. It applies established primitives inside a documented Trust Capsule workflow.</p>
+            <button class="btn btn--text" data-view="about" type="button">Read methodology →</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           VIEW: CLASSICAL LAB OVERVIEW
+      ============================================================= -->
+      <section class="view" id="view-classical-lab" data-view-section="classical-lab">
+        <header class="view-header">
+          <span class="eyebrow eyebrow--classical">Layer 1</span>
+          <h1>Classical Cryptography Lab</h1>
+          <p class="view-lede">Hands-on, fully worked implementations of two classical ciphers. These modules exist to teach the mechanics of substitution and matrix-based encryption — they are never combined with the modern Trust Capsule pipeline.</p>
+        </header>
+
+        <div class="notice notice--info">
+          <strong>Scope note:</strong> Playfair and Hill ciphers are historically significant but are not secure against modern cryptanalysis. They are presented here strictly as an educational sandbox.
+        </div>
+
+        <div class="module-grid">
+          <article class="module-card">
+            <h2>Playfair Cipher</h2>
+            <p>Digraph substitution cipher using a 5×5 key matrix. Covers matrix generation, I/J merge, and the three digraph rules.</p>
+            <button class="btn btn--primary" data-view="playfair" type="button">Open module</button>
+          </article>
+          <article class="module-card">
+            <h2>Hill Cipher</h2>
+            <p>Matrix-based polygraphic cipher using modular linear algebra. Covers determinant, modular inverse, and key invertibility.</p>
+            <button class="btn btn--primary" data-view="hill" type="button">Open module</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           VIEW: PLAYFAIR CIPHER
+      ============================================================= -->
+      <section class="view" id="view-playfair" data-view-section="playfair">
+        <header class="view-header">
+          <span class="eyebrow eyebrow--classical">Layer 1 · Classical Lab</span>
+          <h1>Playfair Cipher</h1>
+          <p class="view-lede">Digraph substitution using a 5×5 key square. Enter a keyword to build the matrix, then encrypt or decrypt a message to see every rule applied.</p>
+        </header>
+
+        <div class="workbench">
+          <div class="workbench-panel">
+            <h2 class="panel-title">1. Key &amp; Matrix</h2>
+            <label class="field" for="pfKeyword">
+              <span class="field-label">Keyword</span>
+              <input type="text" id="pfKeyword" class="field-input" placeholder="e.g. MONARCHY" autocomplete="off">
+            </label>
+            <p class="field-hint">I and J are merged into a single cell. Duplicate letters are removed automatically.</p>
+            <div class="matrix-grid" id="pfMatrix" aria-label="Playfair 5 by 5 key matrix"></div>
+          </div>
+
+          <div class="workbench-panel">
+            <h2 class="panel-title">2. Message</h2>
+            <label class="field" for="pfInput">
+              <span class="field-label">Plaintext or ciphertext</span>
+              <textarea id="pfInput" class="field-input field-textarea" rows="3" placeholder="Enter text..."></textarea>
+            </label>
+            <div class="mode-toggle" role="group" aria-label="Playfair mode">
+              <button class="mode-btn is-active" data-pf-mode="encrypt" type="button">Encrypt</button>
+              <button class="mode-btn" data-pf-mode="decrypt" type="button">Decrypt</button>
+            </div>
+            <button class="btn btn--primary" id="pfRunBtn" type="button">Run Playfair</button>
+          </div>
+        </div>
+
+        <div class="workbench-panel workbench-panel--full">
+          <h2 class="panel-title">3. Digraph Preparation</h2>
+          <p class="field-hint">Duplicate letters within a pair are split with a filler, and an odd final letter is padded with X.</p>
+          <div class="digraph-table" id="pfDigraphs" aria-label="Digraph breakdown"></div>
+        </div>
+
+        <div class="workbench-panel workbench-panel--full">
+          <h2 class="panel-title">4. Step-by-Step Rule Trace</h2>
+          <ol class="step-log" id="pfStepLog"></ol>
+        </div>
+
+        <div class="result-panel" id="pfResultPanel">
+          <h2 class="panel-title">Result</h2>
+          <output class="result-output" id="pfResultOutput">—</output>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           VIEW: HILL CIPHER
+      ============================================================= -->
+      <section class="view" id="view-hill" data-view-section="hill">
+        <header class="view-header">
+          <span class="eyebrow eyebrow--classical">Layer 1 · Classical Lab</span>
+          <h1>Hill Cipher</h1>
+          <p class="view-lede">Polygraphic substitution using modular matrix arithmetic. Provide an invertible key matrix (mod 26) to encrypt or decrypt.</p>
+        </header>
+
+        <div class="workbench">
+          <div class="workbench-panel">
+            <h2 class="panel-title">1. Key Matrix</h2>
+            <div class="mode-toggle" role="group" aria-label="Hill matrix size">
+              <button class="mode-btn is-active" data-hill-size="2" type="button">2 × 2</button>
+              <button class="mode-btn" data-hill-size="3" type="button">3 × 3</button>
+            </div>
+            <div class="key-matrix-input" id="hillKeyInput" aria-label="Hill cipher key matrix input"></div>
+            <div class="validity-badge" id="hillValidityBadge" data-state="pending">Checking key…</div>
+            <dl class="calc-list" id="hillDetInverse">
+              <div><dt>Determinant</dt><dd id="hillDet">—</dd></div>
+              <div><dt>Determinant mod 26</dt><dd id="hillDetMod">—</dd></div>
+              <div><dt>Modular inverse of det</dt><dd id="hillDetInv">—</dd></div>
+            </dl>
+          </div>
+
+          <div class="workbench-panel">
+            <h2 class="panel-title">2. Message</h2>
+            <label class="field" for="hillInput">
+              <span class="field-label">Plaintext or ciphertext</span>
+              <textarea id="hillInput" class="field-input field-textarea" rows="3" placeholder="Enter text..."></textarea>
+            </label>
+            <div class="mode-toggle" role="group" aria-label="Hill mode">
+              <button class="mode-btn is-active" data-hill-mode="encrypt" type="button">Encrypt</button>
+              <button class="mode-btn" data-hill-mode="decrypt" type="button">Decrypt</button>
+            </div>
+            <button class="btn btn--primary" id="hillRunBtn" type="button">Run Hill Cipher</button>
+            <p class="error-text" id="hillErrorText" hidden></p>
+          </div>
+        </div>
+
+        <div class="workbench-panel workbench-panel--full">
+          <h2 class="panel-title">3. Vector Preparation</h2>
+          <div class="digraph-table" id="hillBlocks" aria-label="Plaintext block breakdown"></div>
+        </div>
+
+        <div class="workbench-panel workbench-panel--full">
+          <h2 class="panel-title">4. Step-by-Step Matrix Calculation</h2>
+          <ol class="step-log" id="hillStepLog"></ol>
+        </div>
+
+        <div class="result-panel" id="hillResultPanel">
+          <h2 class="panel-title">Result</h2>
+          <output class="result-output" id="hillResultOutput">—</output>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           VIEW: TRUST CAPSULE CREATOR
+      ============================================================= -->
+      <section class="view" id="view-capsule-create" data-view-section="capsule-create">
+        <header class="view-header">
+          <span class="eyebrow eyebrow--modern">Layer 2 · Trust Capsule</span>
+          <h1>Trust Capsule Creator</h1>
+          <p class="view-lede">Encrypts your message with AES-GCM, establishes a session key with ECDH, verifies integrity with SHA-256, and signs the capsule with ECDSA — all via the browser's native Web Crypto API.</p>
+        </header>
+
+        <div class="workbench">
+          <div class="workbench-panel">
+            <h2 class="panel-title">1. Identities</h2>
+            <p class="field-hint">Generates local ECDSA (signing) and ECDH (session) keypairs for this demo session.</p>
+            <button class="btn btn--secondary" id="genSenderKeysBtn" type="button">Generate Sender Keys</button>
+            <div class="key-status" id="senderKeyStatus" data-state="pending">No sender keys yet</div>
+
+            <label class="field" for="capsuleReceiverName">
+              <span class="field-label">Receiver label</span>
+              <input type="text" id="capsuleReceiverName" class="field-input" placeholder="e.g. Receiver-B" autocomplete="off">
+            </label>
+            <button class="btn btn--secondary" id="genReceiverKeysBtn" type="button">Generate Receiver Keys</button>
+            <div class="key-status" id="receiverKeyStatus" data-state="pending">No receiver keys yet</div>
+          </div>
+
+          <div class="workbench-panel">
+            <h2 class="panel-title">2. Message</h2>
+            <label class="field" for="capsuleMessageInput">
+              <span class="field-label">Message content</span>
+              <textarea id="capsuleMessageInput" class="field-input field-textarea" rows="4" placeholder="Enter the message to protect..."></textarea>
+            </label>
+            <label class="field" for="capsuleExpiry">
+              <span class="field-label">Expires in (minutes)</span>
+              <input type="number" id="capsuleExpiry" class="field-input" value="10" min="1">
+            </label>
+          </div>
+        </div>
+
+        <div class="workbench-panel workbench-panel--full">
+          <h2 class="panel-title">3. Build Capsule</h2>
+          <button class="btn btn--primary btn--large" id="buildCapsuleBtn" type="button">Generate Trust Capsule</button>
+          <ol class="pipeline-trace" id="createPipelineTrace">
+            <li data-stage="session-key">Generate cryptographic session material</li>
+            <li data-stage="encrypt">AES-GCM encrypts the content</li>
+            <li data-stage="ecdh">ECDH establishes the session key</li>
+            <li data-stage="hash">SHA-256 integrity hash generated</li>
+            <li data-stage="sign">ECDSA signs the capsule</li>
+            <li data-stage="assemble">Trust Capsule assembled</li>
+          </ol>
+        </div>
+
+        <div class="workbench-panel workbench-panel--full" id="capsuleOutputPanel" hidden>
+          <h2 class="panel-title">4. Capsule Output</h2>
+          <pre class="capsule-json" id="capsuleJsonOutput" aria-label="Trust Capsule JSON"></pre>
+          <div class="panel-actions">
+            <button class="btn btn--secondary" id="copyCapsuleBtn" type="button">Copy JSON</button>
+            <button class="btn btn--secondary" id="downloadCapsuleBtn" type="button">Download .json</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           VIEW: TRUST CAPSULE VERIFIER
+      ============================================================= -->
+      <section class="view" id="view-capsule-verify" data-view-section="capsule-verify">
+        <header class="view-header">
+          <span class="eyebrow eyebrow--modern">Layer 2 · Trust Capsule</span>
+          <h1>Trust Capsule Receiver / Verifier</h1>
+          <p class="view-lede">Import a capsule to validate its signature, check integrity, confirm expiration, and — only if every check passes — decrypt the original content.</p>
+        </header>
+
+        <div class="workbench">
+          <div class="workbench-panel">
+            <h2 class="panel-title">1. Import Capsule</h2>
+            <label class="field" for="capsuleImportInput">
+              <span class="field-label">Paste capsule JSON</span>
+              <textarea id="capsuleImportInput" class="field-input field-textarea" rows="6" placeholder="Paste Trust Capsule JSON here..."></textarea>
+            </label>
+            <div class="panel-actions">
+              <label class="btn btn--secondary btn--file">
+                Upload .json
+                <input type="file" id="capsuleFileInput" accept="application/json" hidden>
+              </label>
+              <button class="btn btn--primary" id="verifyCapsuleBtn" type="button">Verify Capsule</button>
+            </div>
+          </div>
+
+          <div class="workbench-panel">
+            <h2 class="panel-title">2. Test Controls</h2>
+            <p class="field-hint">Simulate tampering to see failure detection in action.</p>
+            <button class="btn btn--danger-outline" id="tamperCapsuleBtn" type="button">Simulate Tamper</button>
+            <div class="status-badge" id="capsuleStatusBadge" data-status="idle">AWAITING CAPSULE</div>
+          </div>
+        </div>
+
+        <div class="workbench-panel workbench-panel--full">
+          <h2 class="panel-title">3. Verification Pipeline</h2>
+          <ol class="pipeline-trace" id="verifyPipelineTrace">
+            <li data-stage="parse">Validate capsule structure</li>
+            <li data-stage="signature">Verify sender signature (ECDSA)</li>
+            <li data-stage="integrity">Verify integrity hash (SHA-256)</li>
+            <li data-stage="expiry">Check expiration</li>
+            <li data-stage="session-key">Derive session key (ECDH)</li>
+            <li data-stage="decrypt">AES-GCM decrypt</li>
+          </ol>
+        </div>
+
+        <div class="workbench-panel workbench-panel--full" id="capsuleDecryptedPanel" hidden>
+          <h2 class="panel-title">4. Recovered Content</h2>
+          <output class="result-output" id="capsuleDecryptedOutput">—</output>
+          <dl class="calc-list" id="capsuleMetaList"></dl>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           VIEW: SECURITY ANALYSIS
+      ============================================================= -->
+      <section class="view" id="view-security-analysis" data-view-section="security-analysis">
+        <header class="view-header">
+          <span class="eyebrow">Reference</span>
+          <h1>Security Analysis</h1>
+          <p class="view-lede">An educational comparison of every algorithm used in this project. Classical ciphers are included for context only — they are not recommended for modern sensitive communication.</p>
+        </header>
+
+        <div class="comparison-table-wrap">
+          <table class="comparison-table" id="comparisonTable">
+            <thead>
+              <tr>
+                <th scope="col">Algorithm</th>
+                <th scope="col">Purpose</th>
+                <th scope="col">Type</th>
+                <th scope="col">Strength</th>
+                <th scope="col">Main Use</th>
+                <th scope="col">Limitations</th>
+                <th scope="col">Modern Suitability</th>
+              </tr>
+            </thead>
+            <tbody id="comparisonTableBody">
+              <!-- Populated by js/app.js from js/data (algorithm-comparison) -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           VIEW: CRYPTOGRAPHIC JOURNEY
+      ============================================================= -->
+      <section class="view" id="view-crypto-journey" data-view-section="crypto-journey">
+        <header class="view-header">
+          <span class="eyebrow">Reference</span>
+          <h1>Cryptographic Journey</h1>
+          <p class="view-lede">Follow a message through every stage of the Trust Capsule pipeline, from raw input to verified output.</p>
+        </header>
+
+        <ol class="journey-pipeline" id="journeyPipeline">
+          <li class="journey-stage" data-stage="input">
+            <span class="journey-stage-label">Input</span>
+            <p>The sender's original message or file.</p>
+          </li>
+          <li class="journey-stage" data-stage="encryption">
+            <span class="journey-stage-label">Encryption</span>
+            <p>AES-GCM transforms the content into ciphertext using a fresh random IV.</p>
+          </li>
+          <li class="journey-stage" data-stage="key-establishment">
+            <span class="journey-stage-label">Key Establishment</span>
+            <p>ECDH derives a shared session key between sender and receiver.</p>
+          </li>
+          <li class="journey-stage" data-stage="integrity">
+            <span class="journey-stage-label">Integrity</span>
+            <p>SHA-256 produces a hash over the ciphertext and metadata.</p>
+          </li>
+          <li class="journey-stage" data-stage="authentication">
+            <span class="journey-stage-label">Authentication</span>
+            <p>ECDSA signs the capsule, binding it to the sender's identity.</p>
+          </li>
+          <li class="journey-stage" data-stage="trust-capsule">
+            <span class="journey-stage-label">Trust Capsule</span>
+            <p>All components are assembled into a single portable capsule.</p>
+          </li>
+          <li class="journey-stage" data-stage="verification">
+            <span class="journey-stage-label">Verification</span>
+            <p>The receiver checks the signature, hash, and expiration.</p>
+          </li>
+          <li class="journey-stage" data-stage="decryption">
+            <span class="journey-stage-label">Decryption</span>
+            <p>AES-GCM recovers the plaintext once every check passes.</p>
+          </li>
+          <li class="journey-stage" data-stage="output">
+            <span class="journey-stage-label">Output</span>
+            <p>The original content, delivered to the receiver.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ============================================================
+           VIEW: ABOUT / METHODOLOGY
+      ============================================================= -->
+      <section class="view" id="view-about" data-view-section="about">
+        <header class="view-header">
+          <span class="eyebrow">Reference</span>
+          <h1>About &amp; Methodology</h1>
+          <p class="view-lede">CryptoShare — Trust Capsule is a university-level Cryptography &amp; Network Security mini project.</p>
+        </header>
+
+        <div class="prose-panel">
+          <h2>Scope statement</h2>
+          <p>This project does not invent new cryptographic algorithms. Playfair, Hill Cipher, AES-GCM, ECDH/ECC, SHA-256, and ECDSA are all established, well-documented techniques. The contribution of this project is the application-level Trust Capsule workflow that combines the modern primitives into a single, verifiable, educational secure-communication package.</p>
+
+          <h2>Layer separation</h2>
+          <p>The Classical Cryptography Lab (Playfair, Hill) and the Trust Capsule (AES-GCM, ECDH, SHA-256, ECDSA) are kept entirely independent. Classical cipher output is never fed into the modern pipeline, and the two are not chained together to imply additional security.</p>
+
+          <h2>Technology</h2>
+          <p>Built with HTML5, CSS3, and vanilla JavaScript. Modern cryptographic operations use the browser's native Web Crypto API. No backend, no external cryptography libraries.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="sidebar-scrim" id="sidebarScrim" hidden></div>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================= -->
+  <script src="js/crypto.js"></script>
+  <script src="js/playfair.js"></script>
+  <script src="js/hill.js"></script>
+  <script src="js/capsule.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
